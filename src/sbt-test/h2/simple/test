@@ -1,0 +1,4 @@
+# Create the distribution and ensure files show up.
+> slickGenTables
+$ exists target/scala-2.10/src_managed/main/models/Tables.scala
+> compile
