@@ -11,8 +11,7 @@ Add the plugin in your `plugins.sbt`
 // something like that oO
 resolvers += Resolver.url(
    "mukis-sbt-plugin-releases",
-   url("http://dl.bintray.com/muuki88/sbt-plugins/"))( Resolver.ivyStylePatterns)
-)
+   url("http://dl.bintray.com/muuki88/sbt-plugins/"))(Resolver.ivyStylePatterns)
 
 addSbtPlugin("de.mukis" % "sbt-slick" % "0.1")
 ```
