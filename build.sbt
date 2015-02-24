@@ -15,7 +15,7 @@ scriptedLaunchOpts <+= version apply { v => "-Dproject.version="+v }
 
 // publishing
 releaseSettings
-bintrayPublishSettings
+bintraySettings
 publishMavenStyle := false
 repository in bintray := "sbt-plugins"
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
