@@ -8,6 +8,12 @@ Take a look at the `test-project` for example configurations.
 Add the plugin in your `plugins.sbt`
 
 ```scala
+// something like that oO
+resolvers += Resolver.url(
+   "mukis-sbt-plugin-releases",
+   url("http://dl.bintray.com/muuki88/sbt-plugins/"))( Resolver.ivyStylePatterns)
+)
+
 addSbtPlugin("de.mukis" % "sbt-slick" % "0.1")
 ```
 
