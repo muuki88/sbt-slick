@@ -1,4 +1,5 @@
 import bintray.Keys._
+import sbtrelease._
 
 name := "sbt-slick"
 organization := "de.mukis"
@@ -16,6 +17,8 @@ scriptedLaunchOpts <+= version apply { v => "-Dproject.version="+v }
 // publishing
 releaseSettings
 bintraySettings
+
+ReleaseKeys.publishArtifactsAction := PgpKeys.publishSigned.value
 publishMavenStyle := false
 repository in bintray := "sbt-plugins"
 licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
