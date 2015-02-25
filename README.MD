@@ -13,7 +13,7 @@ resolvers += Resolver.url(
    "mukis-sbt-plugin-releases",
    url("http://dl.bintray.com/muuki88/sbt-plugins/"))(Resolver.ivyStylePatterns)
 
-addSbtPlugin("de.mukis" % "sbt-slick" % "0.1")
+addSbtPlugin("de.mukis" % "sbt-slick" % "0.2")
 ```
 
 Enable a database of your choice an configure it.
