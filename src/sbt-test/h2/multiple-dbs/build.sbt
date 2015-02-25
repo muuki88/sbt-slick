@@ -10,6 +10,9 @@ libraryDependencies ++= List(
    "com.h2database" % "h2" % "1.3.170"
 )
 
-slickUrl := { _ => s"jdbc:h2:mem:test;INIT=runscript from '${baseDirectory.value / "create.sql"}'" }
+slickDatabases ++= Seq("test", "another")
+slickUrl := { db =>
+  s"jdbc:h2:mem:$db;INIT=runscript from '${baseDirectory.value / "create.sql"}'"
+}
 
 sourceGenerators in Compile <+= slickGenTables

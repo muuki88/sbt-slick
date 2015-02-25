@@ -20,6 +20,7 @@ object SlickCodeGenPlugin extends AutoPlugin {
     slickPort := -1,
     slickPackage := "models",
     slickDatabases := Nil,
+    slickMakeDbPackage := identity,
     slickGenTables := {
       val cp = (dependencyClasspath in Compile).value
       val r = (runner in Compile).value
@@ -46,8 +47,9 @@ object SlickCodeGenPlugin extends AutoPlugin {
         }
         Seq(fname)
       } else {
+        val makePackage = slickMakeDbPackage.value
         dbs.map { database =>
-          val dbPackage = s"$rootPackage.$database"
+          val dbPackage = s"$rootPackage.${makePackage(database)}"
           // figuring out the filename by replacing dots in package path with slashes
           val fname = (sourceManaged in Compile).value / dbPackage.replaceAll("\\.", "/") / "Tables.scala"
           if (!fname.exists) {
