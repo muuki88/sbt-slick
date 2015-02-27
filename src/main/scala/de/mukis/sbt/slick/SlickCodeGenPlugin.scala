@@ -11,8 +11,6 @@ object SlickCodeGenPlugin extends AutoPlugin {
   object autoImport extends Keys
   import autoImport._
 
-  override def trigger = AllRequirements
-
   /** The basic settings for various code generations. */
   override lazy val projectSettings = Seq[Setting[_]](
     slickUser := None,
