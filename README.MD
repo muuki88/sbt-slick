@@ -8,13 +8,24 @@ Take a look at the `test-project` for example configurations.
 Add the plugin in your `plugins.sbt`
 
 ```scala
-// something like that oO
 resolvers += Resolver.url(
    "mukis-sbt-plugin-releases",
    url("http://dl.bintray.com/muuki88/sbt-plugins/"))(Resolver.ivyStylePatterns)
 
-addSbtPlugin("de.mukis" % "sbt-slick" % "0.2")
 ```
+
+### Slick 2.x
+
+```
+addSbtPlugin("de.mukis" % "sbt-slick" % "0.3")
+```
+
+### Slick 3.x
+
+```
+addSbtPlugin("de.mukis" % "sbt-slick" % "0.4")
+```
+
 
 Enable a database of your choice an configure it.
 
@@ -23,9 +34,10 @@ Enable a database of your choice an configure it.
 Make sure to add slick and the slickTask to the sourceGenerators
 
 ```scala
+val slickVersion = "x.y.z"
 libraryDependencies ++= Seq(
-   "com.typesafe.slick" %% "slick" % "2.1.0",
-   "com.typesafe.slick" %% "slick-codegen" % "2.1.0"
+   "com.typesafe.slick" %% "slick" % slickVersion,
+   "com.typesafe.slick" %% "slick-codegen" % slickVersion
 )
 
 sourceGenerators in Compile <+= slickGenTables
