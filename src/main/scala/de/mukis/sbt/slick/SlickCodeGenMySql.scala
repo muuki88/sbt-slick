@@ -11,7 +11,7 @@ object SlickCodeGenMySql extends AutoPlugin {
   override def requires = SlickCodeGenPlugin
 
   override lazy val projectSettings = Seq[Setting[_]](
-    slickDriver := "scala.slick.driver.MySQLDriver",
+    slickDriver := "slick.driver.MySQLDriver",
     slickJDBCDriver := "com.mysql.jdbc.Driver",
     slickPort := 3306,
     slickUrl := { database =>
