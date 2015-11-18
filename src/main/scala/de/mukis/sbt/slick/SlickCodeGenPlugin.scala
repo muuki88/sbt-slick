@@ -37,7 +37,7 @@ object SlickCodeGenPlugin extends AutoPlugin {
         val fname = (sourceManaged in Compile).value / rootPackage.replaceAll("\\.", "/") / "Tables.scala"
         if (!fname.exists) {
           toError(
-            r.run("scala.slick.codegen.SourceCodeGenerator", cp.files, Array(
+            r.run("slick.codegen.SourceCodeGenerator", cp.files, Array(
               driver, jdbc, url(None), outputDir, rootPackage
             ), log)
           )
@@ -52,7 +52,7 @@ object SlickCodeGenPlugin extends AutoPlugin {
           val fname = (sourceManaged in Compile).value / dbPackage.replaceAll("\\.", "/") / "Tables.scala"
           if (!fname.exists) {
             toError(
-              r.run("scala.slick.codegen.SourceCodeGenerator", cp.files, Array(
+              r.run("slick.codegen.SourceCodeGenerator", cp.files, Array(
                 driver, jdbc, url(Some(database)), outputDir, dbPackage
               ), log)
             )
