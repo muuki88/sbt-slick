@@ -3,6 +3,41 @@ package de.mukis.sbt.slick
 import sbt._
 import sbt.Keys._
 
+sealed trait CallForm {
+  def apply(driver: String,
+            jdbc: String,
+            url: String,
+            outputDir: String,
+            rootPackage: String,
+            user: Option[String],
+            pass: Option[String]): Array[String]
+}
+
+object CallForm {
+  object WithoutCredentials extends CallForm {
+    override def apply(driver: String,
+                       jdbc: String,
+                       url: String,
+                       outputDir: String,
+                       rootPackage: String,
+                       user: Option[String],
+                       pass: Option[String]) = Array(driver, jdbc, url, outputDir, rootPackage)
+  }
+
+  object WithCredentials extends CallForm {
+    override def apply(driver: String,
+                       jdbc: String,
+                       url: String,
+                       outputDir: String,
+                       rootPackage: String,
+                       user: Option[String],
+                       pass: Option[String]) = Array(
+      driver, jdbc, url, outputDir, rootPackage,
+      user getOrElse sys.error("No user supplied"),
+      pass getOrElse sys.error("No password supplied"))
+  }
+}
+
 /**
  * Slick Code Generation Plugin
  */
@@ -18,6 +53,7 @@ object SlickCodeGenPlugin extends AutoPlugin {
     slickPort := -1,
     slickPackage := "models",
     slickDatabases := Nil,
+    slickHostName := "localhost",
     slickMakeDbPackage := identity,
     slickGenTables := {
       val cp = (dependencyClasspath in Compile).value
@@ -25,21 +61,26 @@ object SlickCodeGenPlugin extends AutoPlugin {
       val log = streams.value.log
 
       // place generated files in sbt's managed sources folder
+      val callForm = slickCallForm.value
       val outputDir = (sourceManaged in Compile).value.getPath
       val driver = slickDriver.value
       val jdbc = slickJDBCDriver.value
       val url = slickUrl.value
       val rootPackage = slickPackage.value
       val dbs = slickDatabases.value
+      val user = slickUser.value
+      val pass = slickPassword.value
 
       val files = if (dbs.isEmpty) {
         log.warn("Trying to run slick code generation on no database")
         val fname = (sourceManaged in Compile).value / rootPackage.replaceAll("\\.", "/") / "Tables.scala"
         if (!fname.exists) {
           toError(
-            r.run("slick.codegen.SourceCodeGenerator", cp.files, Array(
-              driver, jdbc, url(None), outputDir, rootPackage
-            ), log)
+            r.run(
+              "slick.codegen.SourceCodeGenerator",
+              cp.files,
+              callForm(driver, jdbc, url(None), outputDir, rootPackage, user, pass),
+              log)
           )
           log.success(s"Using $driver. Output in $outputDir with package $rootPackage")
         }
@@ -52,9 +93,11 @@ object SlickCodeGenPlugin extends AutoPlugin {
           val fname = (sourceManaged in Compile).value / dbPackage.replaceAll("\\.", "/") / "Tables.scala"
           if (!fname.exists) {
             toError(
-              r.run("slick.codegen.SourceCodeGenerator", cp.files, Array(
-                driver, jdbc, url(Some(database)), outputDir, dbPackage
-              ), log)
+              r.run(
+                "slick.codegen.SourceCodeGenerator",
+                cp.files,
+                callForm(driver, jdbc, url(Some(database)), outputDir, dbPackage, user, pass),
+                log)
             )
             log.success(s"Using $driver. Output in $outputDir with package $dbPackage")
           }
