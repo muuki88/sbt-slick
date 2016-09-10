@@ -5,3 +5,10 @@ scala:
 script:
   - sbt ++$SCALA_VERSION --warn update compile test:compile
   - sbt ++$SCALA_VERSION test scripted
+
+sudo: false
+cache:
+ apt: true
+ directories:
+ - $HOME/.sbt
+ - $HOME/.ivy2
