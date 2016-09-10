@@ -12,7 +12,6 @@ script:
 
 sudo: false
 cache:
- apt: true
  directories:
  - $HOME/.sbt
  - $HOME/.ivy2
