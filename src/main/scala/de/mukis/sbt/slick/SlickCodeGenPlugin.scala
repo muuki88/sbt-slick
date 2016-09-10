@@ -7,7 +7,7 @@ sealed trait CallForm {
   def apply(driver: String,
             jdbc: String,
             url: String,
-            outputDir: String,
+            outputDir: File,
             rootPackage: String,
             user: Option[String],
             pass: Option[String]): Array[String]
@@ -18,21 +18,21 @@ object CallForm {
     override def apply(driver: String,
                        jdbc: String,
                        url: String,
-                       outputDir: String,
+                       outputDir: File,
                        rootPackage: String,
                        user: Option[String],
-                       pass: Option[String]) = Array(driver, jdbc, url, outputDir, rootPackage)
+                       pass: Option[String]) = Array(driver, jdbc, url, outputDir.getAbsolutePath, rootPackage)
   }
 
   object WithCredentials extends CallForm {
     override def apply(driver: String,
                        jdbc: String,
                        url: String,
-                       outputDir: String,
+                       outputDir: File,
                        rootPackage: String,
                        user: Option[String],
                        pass: Option[String]) = Array(
-      driver, jdbc, url, outputDir, rootPackage,
+      driver, jdbc, url, outputDir.getAbsolutePath, rootPackage,
       user getOrElse sys.error("No user supplied"),
       pass getOrElse sys.error("No password supplied"))
   }
@@ -105,7 +105,7 @@ object SlickCodeGenPlugin extends AutoPlugin {
           fname
         }
       }
-      
+
       files
     }
   )
