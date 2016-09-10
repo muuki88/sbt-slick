@@ -7,8 +7,8 @@ jdk:
   - oraclejdk8
 
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION --warn "compile test:compile"
-  - sbt ++$TRAVIS_SCALA_VERSION "test scripted"
+  - sbt ++$TRAVIS_SCALA_VERSION --warn compile test:compile
+  - sbt ++$TRAVIS_SCALA_VERSION test scripted
 
 sudo: false
 cache:
