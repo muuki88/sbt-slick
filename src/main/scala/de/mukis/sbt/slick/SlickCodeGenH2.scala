@@ -13,7 +13,7 @@ object SlickCodeGenH2 extends AutoPlugin {
 
   override lazy val projectSettings = Seq[Setting[_]](
     slickDriver := "slick.driver.H2Driver",
-    slickJDBCDriver := "org.h2.Driver",
+    slickJdbcDriver := "org.h2.Driver",
     slickUrl := { db =>
       s"jdbc:h2:mem${db.map(":" + _) getOrElse ""}"
     },

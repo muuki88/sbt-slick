@@ -13,7 +13,7 @@ object SlickCodeGenPostgres extends AutoPlugin {
 
   override lazy val projectSettings = Seq[Setting[_]](
     slickDriver := "slick.driver.PostgresDriver",
-    slickJDBCDriver := "org.postgresql.Driver",
+    slickJdbcDriver := "org.postgresql.Driver",
     slickPort := 5432,
     slickUrl := { database =>
       val db = database getOrElse ""

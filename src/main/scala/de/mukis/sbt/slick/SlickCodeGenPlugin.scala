@@ -62,9 +62,10 @@ object SlickCodeGenPlugin extends AutoPlugin {
 
       // place generated files in sbt's managed sources folder
       val callForm = slickCallForm.value
-      val outputDir = (sourceManaged in Compile).value.getPath
+      // val outputDir = (sourceManaged in Compile).value.getPath
+      val outputDir = slickOutputDir.value
       val driver = slickDriver.value
-      val jdbc = slickJDBCDriver.value
+      val jdbc = slickJdbcDriver.value
       val url = slickUrl.value
       val rootPackage = slickPackage.value
       val dbs = slickDatabases.value

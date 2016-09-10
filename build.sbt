@@ -5,7 +5,7 @@ name := "sbt-slick"
 organization := "de.mukis"
 licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0"))
 
-scalaVersion in Global := "2.10.4"
+scalaVersion in Global := "2.11.7"
 sbtPlugin := true
 
 git.remoteRepo := "git@github.com:muuki88/sbt-slick.git"
