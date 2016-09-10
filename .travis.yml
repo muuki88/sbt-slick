@@ -2,9 +2,13 @@ language: scala
 scala:
    - 2.10.6
 
+jdk:
+  - oraclejdk7
+  - oraclejdk8
+
 script:
-  - sbt ++$SCALA_VERSION --warn update compile test:compile
-  - sbt ++$SCALA_VERSION test scripted
+  - sbt ++$TRAVIS_SCALA_VERSION --warn "compile test:compile"
+  - sbt ++$TRAVIS_SCALA_VERSION "test scripted"
 
 sudo: false
 cache:
