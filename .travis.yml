@@ -1,0 +1,7 @@
+language: scala
+scala:
+   - 2.10.6
+
+script:
+  - ./sbt ++$SCALA_VERSION --warn update compile test:compile
+  - ./sbt ++$SCALA_VERSION test scripted
