@@ -18,7 +18,7 @@ trait Keys {
   type MakePackage = String => String
 
   val slickDriver = SettingKey[String]("slick-driver", "The slick driver, e.g. 'scala.slick.driver.MySQLDriver'")
-  slickOutputDir = SettingKey[File]("slick-output-dir", "The directory (excluding package) to write the classes to, e.g. 'file(src/main)' or (sourceManaged in Compile).value.getPath")
+  val slickOutputDir = SettingKey[File]("slick-output-dir", "The directory (excluding package) to write the classes to, e.g. 'file(src/main)' or (sourceManaged in Compile).value.getPath")
   val slickJdbcDriver = SettingKey[String]("slick-jdbc-driver", "The jdbc driver, e.g. 'com.mysql.jdbc.Driver'")
   val slickUrl = TaskKey[MakeUrl]("slick-url", "URL to database, e.g. 'jdbc:mysql://localhost:3306/your-db'")
   val slickCallForm = SettingKey[CallForm]("slick-call-form", "The calling form to SourceCodeGenerator, with or without credentials included")
