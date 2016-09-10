@@ -55,6 +55,7 @@ object SlickCodeGenPlugin extends AutoPlugin {
     slickDatabases := Nil,
     slickHostName := "localhost",
     slickMakeDbPackage := identity,
+    slickOutputDir := (sourceManaged in Compile).value,
     slickGenTables := {
       val cp = (dependencyClasspath in Compile).value
       val r = (runner in Compile).value
