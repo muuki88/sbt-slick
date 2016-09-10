@@ -7,6 +7,14 @@ Take a look at the `test-project` for example configurations.
 
 Add the plugin in your `plugins.sbt`
 
+With sbt 0.13.6+
+
+```scala
+resolvers += Resolver.bintrayRepo("muuki88", "sbt-plugins")
+```
+
+For older versions use
+
 ```scala
 resolvers += Resolver.url(
    "mukis-sbt-plugin-releases",
@@ -82,4 +90,3 @@ slickDatabases += "your-db"
 ```
 
 This will generate the mysql tables.
-
