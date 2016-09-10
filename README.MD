@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/muuki88/sbt-slick.svg?branch=master)](https://travis-ci.org/muuki88/sbt-slick)
+
 # Slick Code Generation Plugin
 
 This plugin allows you to easily generate slick Table schemas.
