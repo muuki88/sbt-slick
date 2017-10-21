@@ -1,5 +1,13 @@
 [![Build Status](https://travis-ci.org/muuki88/sbt-slick.svg?branch=master)](https://travis-ci.org/muuki88/sbt-slick)
 
+# NOT MAINTAINED
+
+Thanks for your interest in this plugin. The sbt-plugin is not maintained anymore because
+the code necessary to generated slick models is so little a plugin doesn't make any sense.
+
+See the [slick codegen example code](https://github.com/slick/slick-codegen-example) on how
+to generate slick models.
+
 # Slick Code Generation Plugin
 
 This plugin allows you to easily generate slick Table schemas.
